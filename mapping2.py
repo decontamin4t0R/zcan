@@ -8,7 +8,8 @@ def transform_temperature(value: list) -> float:
 
 def transform_air_volume(value: list) -> float:
     parts = value[0:2]
-    return float(parts[0] + parts[1] * 256)
+    word = unpack('<h', parts)[0]
+    return float(word)
 
 def transform_any(value: list) -> float:
     word = 0
@@ -231,8 +232,8 @@ mapping = {
         "transformation": transform_air_volume
     },
     219: {
-        "name": "z_Unknown_TempHumConf",
-        "unit": "",
+        "name": "Power PreHeater Target",
+        "unit": "W",
         "transformation": transform_any
     },
     220: {
