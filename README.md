@@ -1,4 +1,4 @@
-#zcan
+# zcan
 
 Although this is a fork from the great work of marco-hoyer, the goal for this repository is quite different. My goal is to create a set of python scripts to monitor and actively control the ComfoAirQ units.
 
