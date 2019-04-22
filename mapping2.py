@@ -19,17 +19,32 @@ def transform_any(value: list) -> float:
 
 mapping = {
     16: {
-        "name": "z_unknown_NwoNode",
+        "name": "z_unknown_NwoNode_16",
         "unit": "",
         "transformation": transform_any
     },
     17: {
-        "name": "z_unknown_NwoNode",
+        "name": "z_unknown_NwoNode_17",
         "unit": "",
         "transformation": transform_any
     },
     18: {
-        "name": "z_unknown_NwoNode",
+        "name": "z_unknown_NwoNode_18",
+        "unit": "",
+        "transformation": transform_any
+    },
+    33: {
+        "name": "z_unknown_Value_33",
+        "unit": "",
+        "transformation": transform_any
+    },
+    49: {
+        "name": "z_unknown_Value_49",
+        "unit": "",
+        "transformation": transform_any
+    },
+    56: {
+        "name": "z_unknown_Value_56",
         "unit": "",
         "transformation": transform_any
     },
@@ -42,6 +57,11 @@ mapping = {
         "name": "bypass_state",
         "unit": "0=auto,1=open,2=close",
         "transformation": lambda x: float(x[0])
+    },
+    72: {
+        "name": "z_unknown_Value_72",
+        "unit": "",
+        "transformation": transform_any
     },
     81: {
         "name": "Timer1",
@@ -83,9 +103,8 @@ mapping = {
         "unit": "s",
         "transformation": transform_any
     },
-    
     96: {
-        "name": "bypass ??? ValveMsg",
+        "name": "bypass_..._ValveMsg",
         "unit": "unknown",
         "transformation": transform_any
     },
@@ -99,44 +118,43 @@ mapping = {
         "unit": "unknown",
         "transformation": transform_air_volume
     },
-    
     115: {
-        "name": "ventilator enabled output",
+        "name": "ventilator_enabled_output",
         "unit": "",
         "transformation": transform_any
     },
     116: {
-        "name": "ventilator enabled input",
+        "name": "ventilator_enabled_input",
         "unit": "",
         "transformation": transform_any
     },
     117: {
-        "name": "ventilator power_percent output",
+        "name": "ventilator_power_percent_output",
         "unit": "%",
         "transformation": lambda x: float(x[0])
     },
     118: {
-        "name": "ventilator power_percent input",
+        "name": "ventilator_power_percent_input",
         "unit": "%",
         "transformation": lambda x: float(x[0])
     },
     119: {
-        "name": "ventilator air_volume output",
+        "name": "ventilator_air_volume_output",
         "unit": "m3",
         "transformation": transform_air_volume
     },
     120: {
-        "name": "ventilator air_volume input",
+        "name": "ventilator_air_volume_input",
         "unit": "m3",
         "transformation": transform_air_volume
     },
     121: {
-        "name": "ventilator speed output",
+        "name": "ventilator_speed_output",
         "unit": "rpm",
         "transformation": transform_air_volume
     },
     122: {
-        "name": "ventilator speed input",
+        "name": "ventilator_speed_input",
         "unit": "rpm",
         "transformation": transform_air_volume
     },
@@ -156,17 +174,17 @@ mapping = {
         "transformation": transform_air_volume
     },
     144: {
-        "name": "Power PreHeater this year",
+        "name": "Power_PreHeater_this_year",
         "unit": "kWh",
         "transformation": transform_any
     },
     145: {
-        "name": "Power PreHeater total",
+        "name": "Power_PreHeater_total",
         "unit": "kWh",
         "transformation": transform_any
     },
     146: {
-        "name": "Power PreHeater actual",
+        "name": "Power_PreHeater_actual",
         "unit": "W",
         "transformation": transform_any
     },
@@ -175,9 +193,8 @@ mapping = {
         "unit": "days",
         "transformation": transform_air_volume
     },
-
     208: {
-        "name": "z_Unknown_TempHumConf",
+        "name": "z_Unknown_TempHumConf_208",
         "unit": "",
         "transformation": transform_any
     },
@@ -187,12 +204,12 @@ mapping = {
         "transformation":transform_temperature
     },
     210: {
-        "name": "z_Unknown_TempHumConf",
+        "name": "z_Unknown_TempHumConf_210",
         "unit": "",
         "transformation": transform_any
     },
     211: {
-        "name": "z_Unknown_TempHumConf",
+        "name": "z_Unknown_TempHumConf_211",
         "unit": "",
         "transformation": transform_any
     },
@@ -232,7 +249,7 @@ mapping = {
         "transformation": transform_air_volume
     },
     219: {
-        "name": "Power PreHeater Target",
+        "name": "Power_PreHeater_Target",
         "unit": "W",
         "transformation": transform_any
     },
@@ -247,22 +264,22 @@ mapping = {
         "transformation": transform_temperature
     },
     222: {
-        "name": "z_Unknown_TempHumConf",
+        "name": "z_Unknown_TempHumConf_222",
         "unit": "",
         "transformation": transform_any
     },
     224: {
-        "name": "z_Unknown_VentConf",
+        "name": "z_Unknown_VentConf_224",
         "unit": "",
         "transformation": transform_any
     },
     225: {
-        "name": "z_Unknown_VentConf",
+        "name": "z_Unknown_VentConf_225",
         "unit": "",
         "transformation": transform_any
     },
     226: {
-        "name": "z_Unknown_VentConf",
+        "name": "z_Unknown_VentConf_226",
         "unit": "",
         "transformation": transform_any
     },
@@ -277,27 +294,25 @@ mapping = {
         "transformation": lambda x: float(x[0])
     },
     229: {
-        "name": "z_Unknown_VentConf",
+        "name": "z_Unknown_VentConf_229",
         "unit": "",
         "transformation": transform_any
     },
     230: {
-        "name": "z_Unknown_VentConf",
+        "name": "z_Unknown_VentConf_230",
         "unit": "",
         "transformation": transform_any
     },
-
     256: {
-        "name": "z_Unknown_NodeConf",
+        "name": "z_Unknown_NodeConf_256",
         "unit": "unknown",
         "transformation": transform_any
     },
     257: {
-        "name": "z_Unknown_NodeConf",
+        "name": "z_Unknown_NodeConf_257",
         "unit": "unknown",
         "transformation": transform_any
     },
-
     273: {
         "name": "temperature_something...",
         "unit": "°C",
@@ -328,8 +343,6 @@ mapping = {
         "unit": "°C",
         "transformation": transform_temperature
     },
-
-
     289: {
         "name": "z_unknown_HumSens",
         "unit": "",
@@ -360,7 +373,6 @@ mapping = {
         "unit": "%",
         "transformation": lambda x: float(x[0])
     },
-
     305: {
         "name": "PresSens_exhaust",
         "unit": "Pa",
@@ -371,25 +383,39 @@ mapping = {
         "unit": "Pa",
         "transformation": transform_any
     },
-
+    337: {
+        "name": "z_unknown_Value_337",
+        "unit": "",
+        "transformation": transform_any
+    },
+    344: {
+        "name": "z_unknown_Value_344",
+        "unit": "",
+        "transformation": transform_any
+    },
     369: {
-        "name": "z_Unknown_AnalogInput",
+        "name": "z_Unknown_AnalogInput_369",
         "unit": "V?",
         "transformation": transform_any
     },
     370: {
-        "name": "z_Unknown_AnalogInput",
+        "name": "z_Unknown_AnalogInput_370",
         "unit": "V?",
         "transformation": transform_any
     },
     371: {
-        "name": "z_Unknown_AnalogInput",
+        "name": "z_Unknown_AnalogInput_371",
         "unit": "V?",
         "transformation": transform_any
     },
     372: {
-        "name": "z_Unknown_AnalogInput",
+        "name": "z_Unknown_AnalogInput_372",
         "unit": "V?",
+        "transformation": transform_any
+    },
+    385: {
+        "name": "z_unknown_Value_385",
+        "unit": "",
         "transformation": transform_any
     },
     400: {
@@ -405,6 +431,71 @@ mapping = {
     402: {
         "name": "z_Unknown_PostHeater_Total",
         "unit": "kWh",
+        "transformation": transform_any
+    },
+    418: {
+        "name": "z_unknown_Value_418",
+        "unit": "",
+        "transformation": transform_any
+    },
+    513: {
+        "name": "z_unknown_Value_513",
+        "unit": "",
+        "transformation": transform_any
+    },
+    514: {
+        "name": "z_unknown_Value_514",
+        "unit": "",
+        "transformation": transform_any
+    },
+    515: {
+        "name": "z_unknown_Value_515",
+        "unit": "",
+        "transformation": transform_any
+    },
+    516: {
+        "name": "z_unknown_Value_516",
+        "unit": "",
+        "transformation": transform_any
+    },
+    517: {
+        "name": "z_unknown_Value_517",
+        "unit": "",
+        "transformation": transform_any
+    },
+    518: {
+        "name": "z_unknown_Value_518",
+        "unit": "",
+        "transformation": transform_any
+    },
+    519: {
+        "name": "z_unknown_Value_519",
+        "unit": "",
+        "transformation": transform_any
+    },
+    520: {
+        "name": "z_unknown_Value_520",
+        "unit": "",
+        "transformation": transform_any
+    },
+    521: {
+        "name": "z_unknown_Value_521",
+        "unit": "",
+        "transformation": transform_any
+    },
+    522: {
+        "name": "z_unknown_Value_522",
+        "unit": "",
+        "transformation": transform_any
+    },
+    523: {
+        "name": "z_unknown_Value_523",
+        "unit": "",
+        "transformation": transform_any
+    },
+    16400: {
+        "name": "z_unknown_Value_16400",
+        "unit": "",
         "transformation": transform_any
     },
 #00398041 unknown 0 0 0 0 0 0 0 0
