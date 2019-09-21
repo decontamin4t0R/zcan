@@ -58,6 +58,11 @@ mapping = {
         "unit": "0=auto,1=open,2=close",
         "transformation": lambda x: float(x[0])
     },
+    67: {
+        "name": "comfocool_profile",
+        "unit": "",
+        "transformation": lambda x: ["Normal", "Cool", "Warm"][int(x[0])]
+    },
     72: {
         "name": "z_unknown_Value_72",
         "unit": "",

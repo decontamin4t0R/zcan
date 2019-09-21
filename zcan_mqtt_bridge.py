@@ -37,7 +37,7 @@ def handle_client(cansocket):
                 topic = "lueftung/zehnder/state/%s" % stuff["name"]
                 info = stuff["transformation"](data)
                 mqtt_client.publish(topic, info, retain=True)
-                print("Pushing to %s %i" % (topic, info))
+                print("Pushing to %i %s %s" % (pdid, topic, str(info)))
             else:
                 print("Unknown message %i %s" % (pdid, repr(data)), file=sys.stderr)
 
