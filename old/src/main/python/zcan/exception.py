@@ -1,2 +1,0 @@
-class ZCanBaseException(Exception):
-    pass

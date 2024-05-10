@@ -69,12 +69,12 @@ mapping = {
         "transformation": transform_any
     },
     81: {
-        "name": "Timer1",
+        "name": "Timer1_fan_speed_next_change",
         "unit": "s",
         "transformation": transform_any
     },
     82: {
-        "name": "Timer2",
+        "name": "Timer2_bypass_next_change",
         "unit": "s",
         "transformation": transform_any
     },
@@ -89,17 +89,17 @@ mapping = {
         "transformation": transform_any
     },
     85: {
-        "name": "Timer5",
+        "name": "Timer5_comfocool_next_change",
         "unit": "s",
         "transformation": transform_any
     },
     86: {
-        "name": "Timer6",
+        "name": "Timer6_supply_fan_next_change",
         "unit": "s",
         "transformation": transform_any
     },
     87: {
-        "name": "Timer7",
+        "name": "Timer7_exhaust_fan_next_change",
         "unit": "s",
         "transformation": transform_any
     },
@@ -193,30 +193,35 @@ mapping = {
         "unit": "W",
         "transformation": transform_any
     },
+    176: {
+        "name": "rf_pairing_mode",
+        "unit": "0=not_running,1=running,2=done,3=failed,4=aborted",
+        "transformation": transform_any
+    },
     192: {
         "name": "days_until_next_filter_change",
         "unit": "days",
         "transformation": transform_air_volume
     },
     208: {
-        "name": "z_Unknown_TempHumConf_208",
-        "unit": "",
+        "name": "device_temperature_unit",
+        "unit": "0=celsius,1=fahrenheit",
         "transformation": transform_any
     },
     209: {
-        "name" : "RMOT",
-        "unit":"°C",
+        "name": "RMOT",
+        "unit": "°C",
         "transformation":transform_temperature
     },
     210: {
-        "name": "z_Unknown_TempHumConf_210",
-        "unit": "",
-        "transformation": transform_any
+        "name": "heating_season_active",
+        "unit": "0=inactive,1=active",
+        "transformation": lambda x: "active" if int(x[0]) == 1 else "inactive"
     },
     211: {
-        "name": "z_Unknown_TempHumConf_211",
-        "unit": "",
-        "transformation": transform_any
+        "name": "cooling_season_active",
+        "unit": "0=inactive,1=active",
+        "transformation": lambda x: "active" if int(x[0]) == 1 else "inactive"
     },
     212: {
         "name": "Target_temperature",
@@ -274,8 +279,8 @@ mapping = {
         "transformation": transform_any
     },
     224: {
-        "name": "z_Unknown_VentConf_224",
-        "unit": "",
+        "name": "device_airflow_unit",
+        "unit": "1=kg/h,2=l/s,3=m3/h",
         "transformation": transform_any
     },
     225: {
@@ -284,8 +289,8 @@ mapping = {
         "transformation": transform_any
     },
     226: {
-        "name": "z_Unknown_VentConf_226",
-        "unit": "",
+        "name": "fan_speed_0_100_200_300",
+        "unit": "0,100,200,300",
         "transformation": transform_any
     },
     227: {
@@ -304,13 +309,13 @@ mapping = {
         "transformation": transform_any
     },
     230: {
-        "name": "z_Unknown_VentConf_230",
+        "name": "ventilation_constraints",
         "unit": "",
-        "transformation": transform_any
+        "transformation": transform_ventilation_constraints
     },
     256: {
-        "name": "z_Unknown_NodeConf_256",
-        "unit": "unknown",
+        "name": "current_menu_mode",
+        "unit": "1=basic,2=advanced,3=installer",
         "transformation": transform_any
     },
     257: {
@@ -359,10 +364,10 @@ mapping = {
         "transformation": lambda x: float(x[0])
     },
     291: {
-        "name": "air_humidity_outlet_after_recuperator", 
-        "unit": "%", 
-        "transformation": lambda x: float(x[0]) 
-    }, 
+        "name": "air_humidity_outlet_after_recuperator",
+        "unit": "%",
+        "transformation": lambda x: float(x[0])
+    },
     292: {
         "name": "air_humidity_inlet_before_preheater",
         "unit": "%",
