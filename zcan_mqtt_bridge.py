@@ -12,7 +12,7 @@ from config import config
 
 can_frame_fmt = "=IB3x8s"
 mqtt_client = mqtt.Client()
-mqtt_client.will_set("lueftung/zehnder/available", "unavailable", retain=True)
+mqtt_client.will_set("lueftung/zehnder/available", "offline", retain=True)
 mqtt_client.connect(config['mqtt_host'], config['mqtt_port'], 60)
 mqtt_client.loop_start()
 
@@ -22,12 +22,12 @@ def dissect_can_frame(frame):
         print("RTR received from %08X"%(can_id&socket.CAN_EFF_MASK))
         return(0,0,[])
     can_id &= socket.CAN_EFF_MASK
-    
+
     return (can_id, can_dlc, data[:can_dlc])
 
 @asyncio.coroutine
 def handle_client(cansocket):
-    mqtt_client.publish("lueftung/zehnder/available", "available", retain=True)
+    mqtt_client.publish("lueftung/zehnder/available", "online", retain=True)
     request = None
     while True:
         msg = yield from loop.sock_recv(cansocket, 16)
@@ -35,9 +35,9 @@ def handle_client(cansocket):
         if can_id & 0xFF800000 == 0:
             pdid = (can_id>>14)&0x7ff
             if pdid in mapping.mapping:
-                stuff = mapping.mapping[pdid]
-                topic = "lueftung/zehnder/state/%s" % stuff["name"]
-                info = stuff["transformation"](data)
+                map = mapping.mapping[pdid]
+                topic = "lueftung/zehnder/state/%s" % map["name"]
+                info = map["transformation"](data)
                 mqtt_client.publish(topic, info, retain=True)
                 #print("Pushing to %i %s %s" % (pdid, topic, str(info)))
             else:
@@ -51,5 +51,3 @@ loop.run_until_complete(
         handle_client(s))
 
 # vim: et:sw=4:ts=4:smarttab:foldmethod=indent:si
-
-

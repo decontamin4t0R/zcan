@@ -17,11 +17,107 @@ def transform_any(value: list) -> float:
         word += value[n]<<(n*8)
     return word
 
+def transform_enum(enum: dict):
+    def f(value: list) -> str:
+        v = int(value[0])
+        if v in enum:
+            return enum[v]
+        return "unknown"
+    return f
+
+def uint_to_bits(value):
+    """Convert an unsigned integer to a list of set bits."""
+    bits = []
+    j = 0
+    for i in range(64):
+        if value & (1 << i):
+            bits.append(j)
+        j += 1
+    return bits
+
+def calculate_airflow_constraints(value):
+    """Calculate the airflow constraints based on the bitshift value."""
+    bits = uint_to_bits(value)
+    if 45 not in bits:
+        return []
+
+    constraints = []
+    if 2 in bits or 3 in bits:
+        constraints.append("Resistance")
+    if 4 in bits:
+        constraints.append("PreheaterNegative")
+    if 5 in bits or 7 in bits:
+        constraints.append("NoiseGuard")
+    if 6 in bits or 8 in bits:
+        constraints.append("ResistanceGuard")
+    if 9 in bits:
+        constraints.append("FrostProtection")
+    if 10 in bits:
+        constraints.append("Bypass")
+    if 12 in bits:
+        constraints.append("AnalogInput1")
+    if 13 in bits:
+        constraints.append("AnalogInput2")
+    if 14 in bits:
+        constraints.append("AnalogInput3")
+    if 15 in bits:
+        constraints.append("AnalogInput4")
+    if 16 in bits:
+        constraints.append("Hood")
+    if 18 in bits:
+        constraints.append("AnalogPreset")
+    if 19 in bits:
+        constraints.append("ComfoCool")
+    if 22 in bits:
+        constraints.append("PreheaterPositive")
+    if 23 in bits:
+        constraints.append("RFSensorFlowPreset")
+    if 24 in bits:
+        constraints.append("RFSensorFlowProportional")
+    if 25 in bits:
+        constraints.append("TemperatureComfort")
+    if 26 in bits:
+        constraints.append("HumidityComfort")
+    if 27 in bits:
+        constraints.append("HumidityProtection")
+    if 47 in bits:
+        constraints.append("CO2ZoneX1")
+    if 48 in bits:
+        constraints.append("CO2ZoneX2")
+    if 49 in bits:
+        constraints.append("CO2ZoneX3")
+    if 50 in bits:
+        constraints.append("CO2ZoneX4")
+    if 51 in bits:
+        constraints.append("CO2ZoneX5")
+    if 52 in bits:
+        constraints.append("CO2ZoneX6")
+    if 53 in bits:
+        constraints.append("CO2ZoneX7")
+    if 54 in bits:
+        constraints.append("CO2ZoneX8")
+
+    return constraints
+
+def transform_ventilation_constraints(value: list) -> str:
+    print(value)
+    value = bytes(value[0:8])
+    print(value)
+    value = int.from_bytes(value, "little")
+    print(value)
+    return ", ".join(calculate_airflow_constraints(value))
+
+device_state_arr = ["init", "normal", "filterwizard", "commissioning", "supplierfactory", "zehnderfactory", "standby", "away", "DFC"]
+changing_filters_arr = ["active", "changing_filter"]
+operating_mode_enum = {-1: "auto", 1: "limited manual", 5: "unlimited manual"}
+bypass_mode_enum = {0: "auto", 1: "open", 2: "close"}
+sensor_based_enum = {0: "disabled", 1: "active", 2:"overruling"}
+
 mapping = {
     16: {
-        "name": "z_unknown_NwoNode_16",
-        "unit": "",
-        "transformation": transform_any
+        "name": "device_state",
+        "unit": "".join(["%s=%s" % x for x in enumerate(device_state_arr)]),
+        "transformation": lambda x: (device_state_arr[int(x[0])] if int(x[0]) < len(device_state_arr) else "unknown")
     },
     17: {
         "name": "z_unknown_NwoNode_17",
@@ -29,9 +125,9 @@ mapping = {
         "transformation": transform_any
     },
     18: {
-        "name": "z_unknown_NwoNode_18",
-        "unit": "",
-        "transformation": transform_any
+        "name": "changing_filters",
+        "unit": "".join(["%s=%s" % x for x in enumerate(changing_filters_arr)]),
+        "transformation": lambda x: (changing_filters_arr[int(x[0])] if int(x[0]) < len(changing_filters_arr) else "unknown")
     },
     33: {
         "name": "z_unknown_Value_33",
@@ -39,9 +135,9 @@ mapping = {
         "transformation": transform_any
     },
     49: {
-        "name": "z_unknown_Value_49",
-        "unit": "",
-        "transformation": transform_any
+        "name": "operating_mode",
+        "unit": "-1=auto,1=limited_manual,5=unlimited_manual",
+        "transformation": transform_enum(operating_mode_enum)
     },
     56: {
         "name": "z_unknown_Value_56",
@@ -56,12 +152,12 @@ mapping = {
     66: {
         "name": "bypass_state",
         "unit": "0=auto,1=open,2=close",
-        "transformation": lambda x: float(x[0])
+        "transformation": transform_enum(bypass_mode_enum)
     },
     67: {
         "name": "comfocool_profile",
         "unit": "",
-        "transformation": lambda x: ["Normal", "Cool", "Warm"][int(x[0])]
+        "transformation": lambda x: int(x[0])
     },
     72: {
         "name": "z_unknown_Value_72",
@@ -284,9 +380,9 @@ mapping = {
         "transformation": transform_any
     },
     225: {
-        "name": "z_Unknown_VentConf_225",
-        "unit": "",
-        "transformation": transform_any
+        "name": "sensor_based_ventilation",
+        "unit": "0=disabled, 1=active, 2=overruling",
+        "transformation": transform_enum(sensor_based_enum)
     },
     226: {
         "name": "fan_speed_0_100_200_300",
